@@ -20,12 +20,10 @@ RUN /update_sources.sh
 RUN dpkg --add-architecture armhf
 RUN dpkg --add-architecture arm64
 
-RUN apt-get clean
-
 RUN apt-get update \
   && DEBIAN_FRONTEND=noninteractive apt-get install -y \
-  libc6-dev-arm64-cross \
-  libc6-dev-armhf-cross \
+  libc6-dev:arm64 \
+  libc6-dev:armhf \
   && DEBIAN_FRONTEND=noninteractive apt-get install -y \
   python3-all \
   python3-numpy \
@@ -33,7 +31,11 @@ RUN apt-get update \
   crossbuild-essential-armhf \
   crossbuild-essential-arm64 \
   libusb-1.0-0-dev \
+  libusb-1.0-0-dev:arm64 \
+  libusb-1.0-0-dev:armhf \
   zlib1g-dev \
+  zlib1g-dev:armhf \
+  zlib1g-dev:arm64 \
   sudo \
   debhelper \
   pkg-config \
